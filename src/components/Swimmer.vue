@@ -17,7 +17,7 @@
 
       <div class="form-group">
          <label for="birthdate">Date Of Birth!</label>
-        <input type="text"  class="form-control" id="birthdate"
+        <input type="text"  class="form-control" id="birthdate" v-prettyDate="currentSwimmer.birthdate"
           v-model="currentSwimmer.birthdate"
         />
         </div>
@@ -108,14 +108,16 @@ export default {
     },
 
     deleteSwimmer() {
-      SwimmerDataService.delete(this.currentSwimmer.id)
-        .then(response => {
-          console.log(response.data);
-          this.$router.push({ name: "swimmers" });
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      if(confirm("Do you really want to delete " + this.currentSwimmer.first_name + " " + this.currentSwimmer.last_name + " ?")){
+        SwimmerDataService.delete(this.currentSwimmer.id)
+          .then(response => {
+            console.log(response.data);
+            this.$router.push({ name: "swimmers" });
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }
     }
   },
   mounted() {

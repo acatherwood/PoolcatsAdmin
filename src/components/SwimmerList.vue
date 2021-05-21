@@ -35,7 +35,7 @@
       <div v-if="currentSwimmer">
         <h4>Swimmer</h4>
         <div>
-          <label><strong>BOOOOOO Name:</strong></label> {{ currentSwimmer.first_name }}
+          <label><strong>First Name:</strong></label> {{ currentSwimmer.first_name }}
         </div>
         <div>
           <label><strong>Last Name:</strong></label> {{ currentSwimmer.last_name }}
@@ -109,14 +109,16 @@ export default {
     },
 
     removeAllSwimmers() {
-      SwimmerDataService.deleteAll()
-        .then(response => {
-          console.log(response.data);
-          this.refreshList();
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      if(confirm("Do you really want to delete ALL swimmers?")){
+        SwimmerDataService.deleteAll()
+          .then(response => {
+            console.log(response.data);
+            this.refreshList();
+          })
+          .catch(e => {
+            console.log(e);
+          });
+       }
     },
     
     // searchTitle() {
