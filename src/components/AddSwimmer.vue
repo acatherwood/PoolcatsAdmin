@@ -1,3 +1,4 @@
+  
 <template>
   <div class="submit-form">
     <div v-if="!submitted">
@@ -24,13 +25,24 @@
         />
       </div>
 
-         <div class="form-group">
+      <div class="form-group">
         <label for="birthdate">Date of Birth</label>
         <input
           class="form-control"
           id="birthdate"
           v-model="swimmer.birthdate"
-          name="last_name"
+          name="birthdate"
+        />
+      </div>
+
+      
+      <div class="form-group">
+        <label for="suitSize">Suit SIze</label>
+        <input
+          class="form-control"
+          id="suitSize"
+          v-model="swimmerStats.suitSize"
+          name="suitSize"
         />
       </div>
 
@@ -48,7 +60,6 @@
 
 <script>
 import SwimmerDataService from "../services/SwimmerDataService";
-
 export default {
   name: "add-swimmer",
   data() {
@@ -59,6 +70,10 @@ export default {
         last_name: "",
         birthdate: ""
       },
+      swimmerStats: {
+        swimmerId: "",
+        suitSize: ""
+      },
       submitted: false
     };
   },
@@ -67,9 +82,9 @@ export default {
       var data = {
         first_name: this.swimmer.first_name,
         last_name: this.swimmer.last_name,
-        birthdate: this.swimmer.birthdate
+        birthdate: this.swimmer.birthdate,
+        suitSize: this.swimmerStats.suitSize
       };
-
       SwimmerDataService.create(data)
         .then(response => {
           this.swimmer.id = response.data.id;
@@ -84,6 +99,7 @@ export default {
     newSwimmer() {
       this.submitted = false;
       this.swimmer = {};
+      this.swimmerStats = {};
     }
   }
 };
