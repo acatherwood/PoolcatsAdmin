@@ -5,12 +5,17 @@ class SwimmerDataService {
     return http.get("/swimmers");
   }
 
+
   get(id) {
     return http.get(`/swimmers/${id}`);
   }
 
   create(data) {
     return http.post("/swimmers", data);
+  }
+
+  createSwimmerStats(data) {
+    return http.post("/swimmerStats/stats", data);
   }
 
   update(id, data) {

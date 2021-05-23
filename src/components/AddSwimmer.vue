@@ -60,6 +60,7 @@
 
 <script>
 import SwimmerDataService from "../services/SwimmerDataService";
+
 export default {
   name: "add-swimmer",
   data() {
@@ -82,17 +83,29 @@ export default {
       var data = {
         first_name: this.swimmer.first_name,
         last_name: this.swimmer.last_name,
-        birthdate: this.swimmer.birthdate,
+        birthdate: this.swimmer.birthdate
+      };
+        var data2 = {
         suitSize: this.swimmerStats.suitSize
       };
       SwimmerDataService.create(data)
         .then(response => {
           this.swimmer.id = response.data.id;
           console.log(response.data);
-          this.submitted = true;
+          
         })
         .catch(e => {
           console.log(e);
+        });
+      SwimmerDataService.createSwimmerStats(data2)
+        .then(response => {
+          console.log(response.data2);
+          this.swimmerStats.id = response.data2.id;
+          
+          this.submitted = true;
+        })
+        .catch(e => {
+          console.log("add swimmer stats says " + e);
         });
     },
     
