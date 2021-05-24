@@ -31,7 +31,7 @@
         Remove All
       </button>
     </div>
-    <div class="col-md-6">
+<div class="col-md-6">
       <div v-if="currentSwimmer">
         <h4>Swimmer</h4>
         <div>
@@ -70,7 +70,9 @@ export default {
       currentSwimmer: null,
       currentIndex: -1,
       first_name: "",
-      last_name: ""
+      last_name: "",
+      suitSize: "",
+      suitType: ""
     };
   },
   methods: { 
@@ -121,16 +123,6 @@ export default {
        }
     },
     
-    // searchTitle() {
-    //   SwimmerDataService.findByTitle(this.title)
-    //     .then(response => {
-    //       this.swimmers = response.data;
-    //       console.log(response.data);
-    //     })
-    //     .catch(e => {
-    //       console.log(e);
-    //     });
-    // }
   },
   mounted() {
     this.retrieveSwimmers();

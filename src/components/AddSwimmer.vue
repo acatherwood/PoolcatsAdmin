@@ -34,7 +34,6 @@
           name="birthdate"
         />
       </div>
-
       
       <div class="form-group">
         <label for="suitSize">Suit SIze</label>
@@ -43,6 +42,16 @@
           id="suitSize"
           v-model="swimmerStats.suitSize"
           name="suitSize"
+        />
+      </div>
+
+        <div class="form-group">
+        <label for="suitType">Suit Type</label>
+        <input
+          class="form-control"
+          id="suitType"
+          v-model="swimmerStats.suitType"
+          name="suitType"
         />
       </div>
 
@@ -83,7 +92,8 @@ export default {
         first_name: this.swimmer.first_name,
         last_name: this.swimmer.last_name,
         birthdate: this.swimmer.birthdate,
-        suitSize: this.swimmerStats.suitSize
+        suitSize: this.swimmerStats.suitSize,
+        suitType: this.swimmerStats.suitType
       };
       SwimmerDataService.create(data)
         .then(response => {
